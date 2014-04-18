@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $SITE_TITLE;?></title>
 	<script src="template/js/jquery-latest.js"></script>
 	<script src="template/bootstrap/js/bootstrap.min.js"></script>
-	<script src="template/js/my_scripts.js"></script>
 	<link rel="stylesheet" href="template/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="template/styles/styles.css">
 	<link rel="stylesheet" href="template/bootstrap/css/bootstrap-responsive.min.css">
-	<title><?php echo $SITE_TITLE;?></title>
+    <link rel="stylesheet" href="template/styles/styles.css">
+    <script src="template/js/index.js"></script>
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">

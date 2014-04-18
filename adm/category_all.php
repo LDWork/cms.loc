@@ -93,7 +93,7 @@ if (isset($action)) {
             </tfoot>
 
             <?php
-            $res = mysql_query("SELECT * FROM category");
+            $res = mysql_query("SELECT * FROM category ORDER by category_id");
 
             while ($row = mysql_fetch_array($res)) {
 
@@ -101,7 +101,8 @@ if (isset($action)) {
                 $num_post_in_cat = 10;
 
                 $linc_edt = '<a href="?view=category_upd&id_cat=' . $row['category_id'] . '" /><i class="icon-pencil"></i></a>';
-                $linc_del = '<a href="?view=category_all&action=totrash&id_cat=' . $row['category_id'] . '"><li class="icon-remove"></li></a>';
+                //$linc_del = '<a href="?view=category_all&action=totrash&id_cat=' . $row['category_id'] . '"><li class="icon-remove"></li></a>';
+                $linc_del = '<li class="icon-remove del-cat" data-id-cat="'.$row["category_id"].'"></li>';
 
                 if($row["category_id"] == 1){
                     $linc_edt = '';
@@ -115,12 +116,18 @@ if (isset($action)) {
                 $table_cat .= '<td class="center">' . $row["alias"] . '</td>';
                 $table_cat .= '<td class="center">' . $num_post_in_cat . '</td>';
                 $table_cat .= '<td class="center">' . $linc_edt . '</i></td>';
-                // TODO   зделать вопрос на подтверждение удаления
-                $table_cat .= '<td class="center">' . $linc_del . '</td>';
+
+                $table_cat .= '<td class="center">' . $linc_del;
+
+                $table_cat .= '<div class="popup-delete-category item-'.$row["category_id"].'">';
+                $table_cat .= '<div class="center">Вы уверены, что ходите удалить категорию!</div>';
+                $table_cat .= '<a class="btn btn-danger" data-id-cat="'.$row["category_id"].'" href="?view=category_all&action=totrash&id_cat=' . $row['category_id'] . '">Удалить</a>' ;
+                $table_cat .= '<a class="btn close-popup" href="#">Отменить</a>';
+                $table_cat .= '</div>';
+                $table_cat .= '</td>';
                 $table_cat .= '</tr>';
 
                 echo $table_cat;
-
 
             }
             ?>
